@@ -3,12 +3,10 @@ import Header from "./Components/Header";
 import Todos from "./Components/Todos";
 import Footer from "./Components/Footer";
 import React, { useState } from "react";
+import AddTodo from "./Components/AddTodo";
 
 function App() {
   const [todos, setTodos] = useState([
-    { title: "morning walk" },
-    { title: "workout" },
-    { title: "break fast" },
   ]);
 
   const onDelete = (todo) => {
@@ -18,10 +16,16 @@ function App() {
       })
     );
   };
+
+  const addTodo = (title) => {
+    
+setTodos([...todos, {title}])
+  }
   return (
     <>
-      <Header title="Todo App" searchBar={false} />
-      <Todos todos={todos} onDelete={onDelete} />
+      <Header title="Todo List" searchBar={false} />
+    <AddTodo addTodo={addTodo}></AddTodo>
+      <Todos todos={todos}  onDelete={onDelete} />
       <Footer />
     </>
   );
